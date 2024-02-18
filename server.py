@@ -64,13 +64,13 @@ def Register():
         
         appointments = list(mycol.find())
 
-        message = client.messages.create(
-              from_='+15707540743',
-            body=f'Patient name: {data["FirstName"]} {data["MiddleName"]} {data["LastName"]} \nAge: {data["Age"]} \nMobile Number 1: {data["Mobile1"]} \nMobile Number 2: {data["Mobile2"]} \nGender: {data["Gender"]} \nDisease: {data["Disease"]} \nBlood Group: {blood_group_display} \nInsurance: {data["InsuranceOption"]}',
+#         message = client.messages.create(
+#               from_='+15707540743',
+#             body=f'Patient name: {data["FirstName"]} {data["MiddleName"]} {data["LastName"]} \nAge: {data["Age"]} \nMobile Number 1: {data["Mobile1"]} \nMobile Number 2: {data["Mobile2"]} \nGender: {data["Gender"]} \nDisease: {data["Disease"]} \nBlood Group: {blood_group_display} \nInsurance: {data["InsuranceOption"]}',
             
-             to='+918849577787'
-)
-        print(message.sid)
+#              to='+918849577787'
+# )
+#         print(message.sid)
       
 
         return render_template('Register.html', pdf_file=pdf_file_path, appointments=appointments)
