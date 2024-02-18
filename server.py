@@ -6,6 +6,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from twilio.rest import Client
 
+scheulded_App = {}
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["mydatabase"]
 mycol = mydb["Patients"]
@@ -13,7 +14,7 @@ mycol = mydb["Patients"]
 app = Flask(__name__)
 
 account_sid = 'AC557a16dc5303f912724783187944b126'
-auth_token = '3152ab05dcc0b5ad7e6e33206eea610c'
+auth_token = 'ee86beac57cfa4cc98b8e2af107ff422'
 client = Client(account_sid, auth_token)
 
 @app.route('/')
@@ -61,15 +62,21 @@ def Register():
  
         pdf_file_path, blood_group_display = generate_pdf(firstname, middlename, lastname, age, address, mobile1, mobile2, gender, disease, blood_group, insurance_option)
         
- 
-        message = client.messages.create(
-            from_='+15707540743',
-            body=f'Patient name: {data["FirstName"]} {data["MiddleName"]} {data["LastName"]} \nAge: {data["Age"]} \nMobile Number 1: {data["Mobile1"]} \nMobile Number 2: {data["Mobile2"]} \nGender: {data["Gender"]} \nDisease: {data["Disease"]} \nBlood Group: {blood_group_display} \nInsurance: {data["InsuranceOption"]}',
-            to='+918849577787'
-        )
+        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+        mydb = myclient["mydatabase"]
+        mycol = mydb["Patients"]
+        x = mycol.find()
+        print(type(x))
 
+        message = client.messages.create(
+              from_='+15707540743',
+            body=f'Patient name: {data["FirstName"]} {data["MiddleName"]} {data["LastName"]} \nAge: {data["Age"]} \nMobile Number 1: {data["Mobile1"]} \nMobile Number 2: {data["Mobile2"]} \nGender: {data["Gender"]} \nDisease: {data["Disease"]} \nBlood Group: {blood_group_display} \nInsurance: {data["InsuranceOption"]}',
+            
+             to='+918849577787'
+)
         print(message.sid)
-        return render_template('Register.html', pdf_file=pdf_file_path)
+        return render_template('Register.html', pdf_file=pdf_file_path,x=x)
+ 
 
 def generate_pdf(firstname, middlename, lastname, age, address, mobile1, mobile2, gender, disease, blood_group, insurance_option):
 
@@ -122,7 +129,6 @@ def generate_pdf(firstname, middlename, lastname, age, address, mobile1, mobile2
     p.save()
     
     return pdf_file_path, blood_group_display
-    
 
 
 @app.route('/download_registration_confirmation/<filename>')
