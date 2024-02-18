@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visit Window</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='visit.css') }}" />
+      <link rel="shortcut icon" href="{{ url_for('static', filename='images.png') }}">
+
+  </head>
+  <body>
+    <div class="container" id="neurology">
+      <p class="nameleft">Neurology</p>
+      <span class="info1">
+        Neurology is a complex and rapidly evolving field that continues to
+        uncover the mysteries of the brain and nervous system, offering hope for
+        better treatments and possibly even cures for neurological diseases in
+        the future.
+      </span>
+    </div>
+    <div class="container" id="urology">
+      <p class="nameright">Urology</p>
+      <span class="info2">
+        Urology is the medical specialty focused on the diagnosis and treatment
+        of disorders and diseases of the urinary tract system in both males and
+        females, as well as the male reproductive system. This includes
+        conditions affecting the kidneys, ureters, bladder, urethra, and male
+        reproductive organs such as the prostate, testes, and penis.
+      </span>
+    </div>
+    <div class="container" id="radiologist">
+      <p class="nameleft">Radiology</p>
+      <span class="info1">
+        Radiology is a medical specialty that uses various imaging techniques to
+        diagnose and treat diseases and injuries within the body. It encompasses
+        a wide range of imaging modalities, including X-rays, computed
+        tomography (CT), magnetic resonance imaging (MRI), ultrasound, and
+        nuclear medicine imaging.
+      </span>
+    </div>
+    <div class="container" id="childhood">
+      <p class="nameright">Childhood Illnesses</p>
+      <span class="info2">
+        Childhood diseases encompass a wide range of illnesses and conditions
+        that affect infants, children, and adolescents. These diseases can vary
+        in severity, ranging from mild, self-limiting illnesses to serious,
+        life-threatening conditions.
+      </span>
+    </div>
+    <div class="container" id="mantal">
+      <p class="nameleft">Mental Diseases</p>
+      <span class="info1">
+        Mental illnesses are complex and often involve a combination of genetic,
+        biological, environmental, and psychosocial factors. Effective treatment
+        typically involves a combination of medication, psychotherapy, support
+        groups, and lifestyle modifications tailored to the individual's needs.
+      </span>
+    </div>
+    <div class="container" id="gynecology">
+      <p class="nameright">Gynecology</p>
+      <span class="info2">
+        Gynecology is the medical specialty focused on the health of the female
+        reproductive system, including the uterus, ovaries, fallopian tubes,
+        cervix, and vagina. Gynecologists are physicians who specialize in the
+        diagnosis, treatment, and management of conditions and diseases
+        affecting these organs,as well as providing preventive
+        care,contraception counselin for women of all ages.
+      </span>
+    </div>
+
+    <a href="{{url_for('form')}}"
+      ><button id="book">Book Appointment</button></a
+    >
+  </body>
+</html>

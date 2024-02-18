@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appointment</title>
+    
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='form.css') }}" />
+      <link rel="shortcut icon" href="{{ url_for('static', filename='images.png') }}">
+
+  </head>
+  <body>
+    <div class="container">
+      <form action="/register" method="post">
+        <p>Personal Information</p>
+        <div class="form__group field">
+          <input
+            type="input"
+            name="firstname"
+            class="form__field"
+            placeholder="firstname"
+            required="" />
+          <label for="firstname" class="form__label">First Name</label>
+        </div>
+        <div class="form__group field">
+          <input
+            type="input"
+            class="form__field"
+            name="middlename"
+            placeholder="middlename"
+            required="" />
+          <label for="middlename" class="form__label">Middle Name</label>
+        </div>
+        <div class="form__group field">
+          <input
+            type="input"
+            class="form__field"
+            name="lastname"
+            placeholder="lastname"
+            required="" />
+          <label for="lastname" class="form__label">Last Name</label>
+        </div>
+        <div class="form__group field">
+          <input
+            type="number"
+            class="form__field"
+            name="mobile1"
+            placeholder="mobile1"
+            required="" />
+          <label for="mobile1" class="form__label">Contact Number 1</label>
+        </div>
+        <div class="form__group field">
+          <input
+            type="number"
+            class="form__field"
+            name="mobile2"
+            placeholder="mobile2"
+            required="" />
+          <label for="mobile2" class="form__label">Contact Number 2</label>
+        </div>
+        <div class="form__group field">
+          <input
+            type="input"
+            class="form__field"
+            name="address"
+            placeholder="address"
+            required="" />
+          <label for="address" class="form__label">Address</label>
+        </div>
+        <div class="form__group field">
+          <input
+            type="number"
+            class="form__field"
+            placeholder="age"
+            name="age"
+            required="" />
+          <label for="age" class="form__label">Age</label>
+          <div class="left">
+            <input type="radio" name="gender" id="male" value="Male" />
+            <label for="male">Male</label>
+            <input type="radio" name="gender" id="female" value="Female" />
+            <label for="female">Female</label>
+            <input type="radio" name="gender" id="other" value="Other" />
+            <label for="other">Other</label>
+          </div>
+        </div>
+
+        <p class="right">Medical Information</p>
+        <label for="pet-select" class="right" id="pg1">Diseases</label>
+        <br />
+        <select name="disease" id="pet-select" class="pg" class="right">
+          <option value="">--Please choose an option--</option>
+          <option value="childillness">Child illness</option>
+          <option value="heartproblem">Heart problem</option>
+          <option value="womendeases">Women diseases</option>
+          <option value="stomach">Stomach</option>
+          <option value="brain">Brain Related</option>
+          <option value="mental">Mental issue</option>
+        </select>
+        <label for="pet-select" class="right" id="bg1">Blood group</label>
+        <br />
+        <select name="blood_group" class="bg" class="right">
+          <option value="" class="bg">--Please choose an option--</option>
+          <option value="ap">A+</option>
+          <option value="bp">B+</option>
+          <option value="abp">AB+</option>
+          <option value="op">O+</option>
+          <option value="on">O-</option>
+          <option value="abn">AB-</option>
+          <option value="bn">B-</option>
+          <option value="an">A-</option>
+        </select>
+        <div id="insurance">
+          <label for="">Do you have insurance card?</label>
+          <br />
+          <input type="radio" name="insurance_option" id="yes" value="Yes" />
+          <label for="yes">Yes</label>
+          <input type="radio" name="insurance_option" id="no" value="No" />
+          <label for="no">No</label>
+        </div>
+        <button type="submit">Register</button>
+        <p id="scan">
+          Scan And Pay ₹100 <br />
+          (Registration Fees)
+        </p>
+        <div id="qr"></div>
+        <span id="ij"
+          >• You should carry Payment <br />
+          &nbsp; &nbsp; &nbsp; &nbsp; Details At Hospital
+        </span>
+      </form>
+    </div>
+  </body>
+</html>
