@@ -1,32 +1,93 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<link rel="shortcut icon" href="{{ url_for('static', filename='images.png') }}">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thank You</title>
-<style>
-body{
-  background-color: #b47b84;
-  font-size: 2em;
-
-
-}
-a{
-  text-decoration: none;
-  list-style: none;
-}
-</style>
-</head>
-<body>
-<center>
-  <h1>Thank You!</h1>
-  <p>Appointment Registered</p>
-  <p>Get Well Soon!!</p>
-  <p>Download your registration confirmation:</p>
-  <a href="{{ url_for('download_registration_confirmation', filename=pdf_file) }}" download="registration.pdf">Download PDF</a>
-</center>
-</body>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thank You</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      table {
+        width: 98vw;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #944e63;
+        color: white;
+      }
+      h1 {
+        color: red;
+      }
+      body {
+        background-color: #b47b84;
+        font-size: 2em;
+      }
+      a {
+        text-decoration: none;
+        list-style: none;
+      }
+      .highlighted {
+        background-color: yellow; /* Change this to the highlight color you prefer */
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>Thank You!</h1>
+      <p>Appointment Registered</p>
+      <p>Get Well Soon!!</p>
+      <p>Download your registration confirmation:</p>
+      <a
+        href="{{ url_for('download_registration_confirmation', filename=pdf_file) }}"
+        download="registration.pdf"
+        >Download PDF</a
+      >
+    </center>
+    <br />
+    <center>
+      <h1>Recorded Appointments</h1>
+      <br /><br />
+      <table>
+        <tr>
+          <th>No.</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Blood Group</th>
+          <th>Disease</th>
+        </tr>
+        {% for appointment in appointments %} {% set index = loop.index %}
+        <tr {% if loop.last %} class="highlighted" {% endif %}>
+          <td>{{ index }}</td>
+          <td>
+            {{ appointment.FirstName }} {{ appointment.MiddleName }} {{
+            appointment.LastName }}
+          </td>
+          <td>{{ appointment.Gender }}</td>
+          <td>
+            {% set blood_group_mapping = {
+                "ap": "A+",
+                "bp": "B+",
+                "abp": "AB+",
+                "op": "O+",
+                "on": "O-",
+                "abn": "AB-",
+                "bn": "B-",
+                "an": "A-"
+            } %}
+            {{ blood_group_mapping.get(appointment.BloodGroup, appointment.BloodGroup) }}
+          </td>
+          <td>{{ appointment.Disease }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </center>
+  </body>
 </html>

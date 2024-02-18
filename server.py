@@ -6,7 +6,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from twilio.rest import Client
 
-scheulded_App = {}
+scheulded_App = []
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["mydatabase"]
 mycol = mydb["Patients"]
@@ -62,11 +62,7 @@ def Register():
  
         pdf_file_path, blood_group_display = generate_pdf(firstname, middlename, lastname, age, address, mobile1, mobile2, gender, disease, blood_group, insurance_option)
         
-        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-        mydb = myclient["mydatabase"]
-        mycol = mydb["Patients"]
-        x = mycol.find()
-        print(type(x))
+        appointments = list(mycol.find())
 
         message = client.messages.create(
               from_='+15707540743',
@@ -75,8 +71,10 @@ def Register():
              to='+918849577787'
 )
         print(message.sid)
-        return render_template('Register.html', pdf_file=pdf_file_path,x=x)
- 
+      
+
+        return render_template('Register.html', pdf_file=pdf_file_path, appointments=appointments)
+
 
 def generate_pdf(firstname, middlename, lastname, age, address, mobile1, mobile2, gender, disease, blood_group, insurance_option):
 
@@ -129,6 +127,9 @@ def generate_pdf(firstname, middlename, lastname, age, address, mobile1, mobile2
     p.save()
     
     return pdf_file_path, blood_group_display
+@app.route('/records')
+def records():
+    return render_template('records.html')
 
 
 @app.route('/download_registration_confirmation/<filename>')
